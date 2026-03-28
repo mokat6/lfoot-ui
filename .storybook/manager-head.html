@@ -1,0 +1,39 @@
+<!-- 
+This file gets injected in the <head> of the top level html file, the one that has sidebar, toolbar, and iframe. 
+
+preview-head.html is injected in the head of iframe. 
+Alternative, in preview.ts 
+import "./ass.css";
+
+css supports HMR, html files need server restart
+
+-->
+<link rel="stylesheet" href="/src/index.css" />
+
+<style>
+  /* First frame after page reload. Now it's dark in dark mode */
+  body {
+    background: var(--color-bg-background);
+  }
+
+  /* Biggest monkey patch. Alternatives selectors:
+     main > div > div:has(> #preview-loader) { 
+     main > div > div:first-child {
+  */
+
+  div:has(> #preview-loader) {
+    background: var(--color-bg-background);
+  }
+</style>
+
+<!-- Adding <html class='dark'> if system prefers dark mode -->
+<script>
+  (function () {
+    try {
+      var isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (e) {}
+  })();
+</script>

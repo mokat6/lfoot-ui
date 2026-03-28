@@ -1,111 +1,93 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+/* This enabled dark: variant to work */
+/* Don't necessarily need. If I had light, dark, green themes. dark: was never used. */
+/* @custom-variant dark (&:where(.dark, .dark *)); */
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  /* --color-*: initial;  */
+  /* --spacing-*: initial; */
+  /* --radius-*: initial;  */
+  --font-main-font: Roboto, Comic Sans MS, Comic Sans, cursive;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  /* --font-primary: Helvetica, sans-serif; */
+
+  /* -------------*/
+  /* --------------*/
+  --z-index-z-overlay: 40;
+  --z-index-z-modal: 40;
+  --z-index-z-tooltip: 50;
+  --z-index-z-popover: 50; /* multiselect, comp classification */
+  --z-index-z-toast: 60;
+  /* --------------*/
+  --color-success-100: #f0fcf5; /*success background*/
+  --color-success-300: #caf2d8; /*success border*/
+  --color-success-500: #519a5d; /*success text, icons*/
+
+  --color-info-100: #eff5ff; /*blue*/
+  --color-info-300: #c8d8ed;
+  --color-info-500: #2b4f9b;
+
+  --color-warning-100: #fefbe7; /*yellow*/
+  --color-warning-300: #f8f2b4;
+  --color-warning-500: #ae800f;
+
+  --color-danger-100: #fdf2f2; /*reds*/
+  --color-danger-300: #e7d1cc;
+  --color-danger-500: #c21c26;
+
+  /*  --- --- --- ---  */
+  --color-action-primary: #2961ee; /*blue*/
+  --color-action-secondary: #e3e8f6; /*muted blue*/
+
+  --color-component-border: #e0e0e0;
+
+  --color-text-body: #0d0d0d;
+  --color-text-header-row: #747474;
+  --color-text-greyed-out: #b7b7b7;
+  --color-text-on-primary-action: #ffffff;
+
+  --color-border: #e0e0e0; /*grey*/
+  --color-bg-background: #f6f6f6; /*aka surface? very light grey*/
+  --color-bg-header-row: #ebebeb; /* grey*/
+  --color-bg-header-hover: #f5f5f5; /* grey*/
+  --color-bg-row-selected: #eaf0fe; /* blueish*/
+  --color-bg-row-hover: #eeeeee; /* blueish*/
+  --color-bg-table: #fff;
+  --color-bg-disabled: #b1b2b3;
+  --color-header-row-text: #949494; /*dark grey*/
+
+  --radius-none: 0;
+  --radius-rounded: 0.375rem; /* px,  --radius-md */
+
+  --spacing-bordert-thickness: 1px;
+  --spacing-padding-button-x: 1rem;
+  --spacing-padding-button-y: 0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+.dark {
+  --color-action-primary: #415d91; /* lighter blue for dark bg */
+  --color-action-secondary: #2b3550; /* muted navy / desaturated blue */
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
+  --color-component-border: #3a3a3a; /* medium-dark grey border */
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+  --color-text-body: #ffffff; /* body text: white */
+  --color-text-header-row: #cfcfcf; /* light grey */
 
-body {
-  margin: 0;
-}
+  --color-bg-row-selected: #5c6372; /* blueish*/
+  --color-bg-row-hover: #6e6e6e; /* blueish*/
+  --color-text-greyed-out: #7d7d7d; /* greyed-out/inactive text */
+  --color-text-on-primary-action: #ffffff; /* text on primary buttons: white */
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
+  --color-border: #2f2f2f; /* same as component-border */
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
+  --color-bg-background: #212121; /* true dark background */
+  --color-bg-table: #171717; /* table/card background */
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
+  --color-bg-header-row: #4f4f4f; /* slightly elevated surface */
+  --color-bg-header-hover: #747474; /* grey*/
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  --color-bg-disabled: #575757;
+
+  --color-header-row-text: #b3b3b3; /* muted light grey text */
 }

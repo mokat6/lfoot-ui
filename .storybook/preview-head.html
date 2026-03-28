@@ -1,0 +1,32 @@
+<style>
+  /* This file has effect inside the <main>, inside the iframe, where story page, doc page reneders */
+
+  /* Docs page reload. White loading screen with skeletons flashing. */
+  .sb-preparing-docs.sb-wrapper {
+    display: none;
+  }
+
+  /* Story page reload. White loading screen flash with spinner*/
+  .sb-preparing-story.sb-wrapper {
+    background: var(--color-bg-background);
+    /* background: black; */
+  }
+
+  /* when switching story pages. First flash is this, before background color loads */
+  body {
+    /* background: black; */
+    background-color: var(--color-bg-background);
+  }
+</style>
+
+<!-- This script adds .dark to iframe. Initially - .dark in dark mode, gets those var(--color-bg-background); working. Dodges the white flash -->
+<script>
+  (function () {
+    try {
+      var isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (e) {}
+  })();
+</script>
